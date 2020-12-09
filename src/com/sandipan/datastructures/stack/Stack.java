@@ -1,25 +1,30 @@
 package com.sandipan.datastructures.stack;
 
-import java.util.Random;
-
-public class Stack {
+public class Stack<E> {
 
 	public Stack(int size) {
-		stack = new int[size];
+		stack = new Object[size];
 	}
 
-	public int pop() {
-		if (length == 0) {
-			throw new RuntimeException("Stack is empty.");
-		}
-		return stack[--length];
+	public E pop() {
+		E value = peek();
+		length--;
+		return value;
 	}
 
-	public void push(int value) {
+	public void push(E value) {
 		if (length == size()) {
 			throw new RuntimeException("Stack is already full.");
 		}
 		stack[length++] = value;
+	}
+	
+	public E peek()
+	{
+		if (length == 0) {
+			throw new RuntimeException("Stack is empty.");
+		}
+		return (E)stack[length-1];
 	}
 
 	public int length() {
@@ -31,6 +36,6 @@ public class Stack {
 	}
 
 	private int length = 0;
-	private int[] stack;
+	private Object[] stack;
 
 }
